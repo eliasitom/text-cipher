@@ -1,0 +1,49 @@
+* {
+  font-weight: bold;
+  color: var(--color-3);
+  font-family: 'Rubik', sans-serif;
+}
+
+
+body {
+  margin: 0;
+  background-color: var(--color-0);
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+
+  text-transform: uppercase;
+  color: var(--color-1);
+  font-size: 14px;
+}
+label input {
+  margin-top: 3px;
+  outline: none;
+}
+input {
+  height: 30px;
+
+  border-radius: 10px;
+  background-color: var(--color-0);
+  padding: 5px 10px 5px 10px;
+  border: solid 2px var(--color-1);
+  font-size: 16px;
+}
+input::placeholder {
+  color: var(--color-1);
+  text-transform: uppercase;
+}
+select {
+  font-size: 16px;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+  background-color: rgba(0, 0, 0, 0);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-1);
+  border-radius: 10px;
+}
