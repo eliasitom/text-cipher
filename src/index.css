@@ -48,3 +48,21 @@ select {
   border-radius: 10px;
 }
 
+
+
+@keyframes svg-hover {
+  0% {
+    fill: var(--color-1);
+  }
+  100% {
+    fill: var(--color-3);
+  }
+}
+@keyframes svg-not-hover {
+  0% {
+    fill: var(--color-3);
+  }
+  100% {
+    fill: var(--color-1);
+  }
+}

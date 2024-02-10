@@ -93,7 +93,7 @@ function App() {
   const [iv, setIv] = useState("myInitialValue")
 
   const [history, setHistory] = useState([])
-
+  const [copyTimer, setCopyTimer] = useState(false)
 
 
 
@@ -305,6 +305,19 @@ function App() {
     if (inputLog.iterations) setIterations(inputLog.iterations)
     if (inputLog.salt) setSalt(inputLog.salt)
   }
+
+  const handleCopyResult = () => {
+    if(encryptMode && encryptedString) navigator.clipboard.writeText(encryptedString)
+    else if(!encryptMode && decryptedHash) navigator.clipboard.writeText(decryptedHash)
+
+    setCopyTimer(true)
+  }
+
+  useEffect(() => {
+    setTimeout(() => {
+      setCopyTimer(false)
+    }, 2000);
+  }, [copyTimer])
 
   // Almacenar texto encriptado
   useEffect(() => {
@@ -661,7 +674,11 @@ function App() {
         <article>
           <h3>your encrypted text</h3>
             <p className='encrypted-result'>{encryptMode ? encryptedString : decryptedHash}</p>
-          <FaCopy />
+          <FaCopy 
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content={!copyTimer ? "copy" : "copied successfully"}
+            onClick={handleCopyResult}
+          />
         </article>
       </section>
       <footer>
