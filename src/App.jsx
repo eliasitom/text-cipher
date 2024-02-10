@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import CryptoJS from 'crypto-js';
-import { FaArrowUp } from "react-icons/fa";
+
+import { FaArrowUp, FaCopy } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+
+import { Tooltip } from 'react-tooltip'
 
 import './App.css'
 
@@ -48,6 +51,14 @@ const algorithmsDescriptions = {
   Rabbit operates on 128-bit blocks of data and uses a 128-bit key. It generates a keystream by combining both nonlinear 
   feedback shift registers (NLFSRs) and linear feedback shift registers (LFSRs). Rabbit offers strong cryptographic security 
   and is suitable for various applications requiring efficient encryption, such as secure communications and storage systems.`
+}
+
+const tooltipStyles = {
+  backgroundColor: "var(--color-1)",
+  borderRadius: "10px",
+  color: "var(--color-3)",
+  maxWidth: "250px",
+  zIndex: "5"
 }
 
 const HistoryItem = ({ algorithm, inputLog, method, handleClick }) => {
@@ -442,6 +453,11 @@ function App() {
 
   return (
     <main className={theme}>
+      <Tooltip
+        id="my-tooltip"
+        className='tooltip'
+        style={tooltipStyles}
+      />
       <header>
         <h1>text cipher</h1>
         <h1 className='title-background'>U2FsdGVkX6F/du5Kj=Pn+2</h1>
@@ -547,6 +563,8 @@ function App() {
                         placeholder='password...'
                         onChange={e => setPassword(e.target.value)}
                         value={password}
+                        data-tooltip-id="my-tooltip"
+                        data-tooltip-content="The 'password' parameter in algorithms like PBKDF2 is the user's input used to generate secure encryption keys"
                       />
                     </label>
                     {
@@ -556,6 +574,9 @@ function App() {
                           placeholder='salt...'
                           onChange={e => setSalt(e.target.value)}
                           value={salt}
+                          data-tooltip-id='my-tooltip'
+                          data-tooltip-content={`The "salt" parameter in encryption algorithms is used to add additional entropy 
+                          to passwords before deriving a key. This strengthens security against brute force and dictionary attacks.`}
                         />
                       </label>
                     }
@@ -565,23 +586,46 @@ function App() {
                         placeholder='iterations...'
                         onChange={e => setIterations(e.target.value)}
                         value={iterations}
+                        data-tooltip-id='my-tooltip'
+                        data-tooltip-content={`The "iterations" parameter in encryption algorithms indicates the number of 
+                        times a key derivation process is repeated, increasing resistance against brute force attacks.`}
                       />
                     </label>
                   </>
                   : algorithm === "hmac-sha256" || algorithm === "rabbit" || algorithm === "aes" ?
                     <label className='key-label'>
                       key
-                      <input placeholder='your key...' onChange={e => setKey(e.target.value)} value={key} />
+                      <input
+                        placeholder='your key...'
+                        onChange={e => setKey(e.target.value)}
+                        value={key}
+                        data-tooltip-id="my-tooltip"
+                        data-tooltip-content={`In cryptographic algorithms, the "key" 
+                        parameter signifies the secret key used for secure encryption, signing, or authentication.`}
+                      />
                     </label>
                     : algorithm === "des" ?
                       <>
                         <label className='key-label'>
                           key
-                          <input placeholder='your key...' onChange={e => setKey(e.target.value)} value={key} />
+                          <input
+                            placeholder='your key...'
+                            onChange={e => setKey(e.target.value)} value={key}
+                            data-tooltip-id="my-tooltip"
+                            data-tooltip-content={`In cryptographic algorithms, the "key" 
+                          parameter signifies the secret key used for secure encryption, signing, or authentication.`}
+                          />
                         </label>
                         <label className='key-label'>
                           initial value
-                          <input placeholder='your iv...' onChange={e => setIv(e.target.value)} value={iv} />
+                          <input
+                            placeholder='your iv...'
+                            onChange={e => setIv(e.target.value)} value={iv}
+                            data-tooltip-id='my-tooltip'
+                            data-tooltip-content={`The "IV" parameter (Initialization Vector) 
+                          in symmetric encryption algorithms is used to initialize the encryption process, providing 
+                          randomness and increasing security.`}
+                          />
                         </label>
                       </>
                       : undefined
@@ -614,12 +658,10 @@ function App() {
             }
           </p>
         </article>
-        <article e>
+        <article>
           <h3>your encrypted text</h3>
-          <div className='encrypted-result'>
-            <p>{encryptMode ? encryptedString : decryptedHash}</p>
-          </div>
-          <h1>{generatedSalt}</h1>
+            <p className='encrypted-result'>{encryptMode ? encryptedString : decryptedHash}</p>
+          <FaCopy />
         </article>
       </section>
       <footer>

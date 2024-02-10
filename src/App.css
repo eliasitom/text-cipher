@@ -139,7 +139,7 @@ article {
   justify-content: flex-start;
 
   width: 500px;
-  height: 600px;
+  height: 70vh;
   margin-right: 30px;
 
   border-radius: 10px;
@@ -369,17 +369,11 @@ article h3 {
 
 
 
-.encrypted-result {
-  width: 100%;
-  min-height: 30%;
-  max-height: 70%;
-  margin-top: 20px;
-}
 
-.encrypted-result p {
+
+.encrypted-result {
   width: 90%;
-  height: 100%;
-  margin-left: 20px;
+  max-height: 60%;
   padding: 10px;
 
   border: solid 2px var(--color-1);
@@ -388,6 +382,11 @@ article h3 {
   overflow: hidden;
   overflow-y: scroll;
 }
+main article:nth-child(3) svg {
+  margin-left: 80%;
+  font-size: 26px;
+}
+
 
 .history-items-container {
   display: flex;
