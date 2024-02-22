@@ -1,13 +1,13 @@
 # Text Cipher
 This is an interactive and educational application designed to explore different encryption and decryption algorithms, including AES, RABBIT, SHA-1, among others. It allows users to enter text, select an algorithm and adjust parameters such as key, initialization vector (IV), password, among others, depending on the selected algorithm. Additionally, the app provides information about the selected algorithm and how it works.
 
-## Características
+## Characteristics
 - Intuitive interface for entering text and adjusting parameters.
 - Support for multiple encryption and decryption algorithms.
 - Detailed information about each algorithm, including how it works and security considerations.
 - Flexibility to adjust parameters according to user needs.
 
-## Algoritmos Soportados
+## Supported Algorithms
 - AES
 - MD5
 - SHA-1
